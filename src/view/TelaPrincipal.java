@@ -865,9 +865,8 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 					btnDesconectar.setEnabled(true);
 					conectar.setEnabled(false);				
 					ator.conectar(nomeJogador, servidor);
-					//btnIniciar.setEnabled(true);
-					//btnDesconectar.setEnabled(true);
-					//conectar.setEnabled(false);
+					btConectar();
+					
 					
 				} catch (Exception ex) {
 					notificar(ex.getMessage());

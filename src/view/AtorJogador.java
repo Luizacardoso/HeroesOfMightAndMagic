@@ -23,13 +23,14 @@ public class AtorJogador{
 	}
 	
 	public void conectar(String nomeJogador, String servidor) {
-		tela.btConectar();
+		
 
 		boolean conectou = atorNetGames.conectar(servidor, nomeJogador);
 		
 		if(conectou){
 			tela.btConectar();
 			notificarConexaoEstabelecida();
+			tela.btConectar();
 		} else {
 			notificarFalhaConexao();
 		}

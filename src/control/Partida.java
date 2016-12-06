@@ -25,6 +25,7 @@ public class Partida {
 		numRodadas = 15;
 		tabuleiro = new Tabuleiro();
 		this.ator = ator;
+		
 	}
 
 	public void iniciarPartida() {
@@ -58,6 +59,7 @@ public class Partida {
 	}
 
 	public void jogar(int posicaoAtual, int posicaoDestino) throws Exception{
+
 		Posicao posicaoAt = tabuleiro.getPosicoes().get(posicaoAtual);
 		System.out.println(posicaoAt.getCodigo()+" ====== " + posicaoAtual);
 		Personagem ocupante = posicaoAt.getOcupante();
@@ -80,7 +82,7 @@ public class Partida {
 					boolean ocupada = tabuleiro.isPosicaoOcupada(posicaoDestino);
 					
 					if(!ocupada) {
-					tabuleiro.andar(posicaoAtual, posicaoDestino);
+					//tabuleiro.andar(posicaoAtual, posicaoDestino);
 					this.verificaAndar(posicaoAtual, posicaoDestino);
 						System.out.println("andouuuuuu");
 
@@ -200,7 +202,7 @@ public class Partida {
 	
 	private boolean verificaDeslocamento(int posicaoAtual, int posicaoDestino){
 		
-		Personagem personagem = tabuleiro.getPosicoes().get(posicaoAtual).getOcupante();
+		//Personagem personagem = tabuleiro.getPosicoes().get(posicaoAtual).getOcupante();
 		int deslocamento = Math.abs(posicaoDestino - posicaoAtual);
 		if((deslocamento <= 4) || (deslocamento == 15) || (deslocamento == 30) || (deslocamento == 45) || (deslocamento == 60)) {
 			return true;
@@ -257,8 +259,10 @@ public class Partida {
 	
 	private void verificaAndar(int posicaoAtual, int posicaoDestino){
 		System.out.println("entrou verificaAndar");
-		
-	if(this.verificaDeslocamento(posicaoAtual, posicaoDestino)) {
+		Personagem personagem = tabuleiro.getPosicoes().get(posicaoAtual).getOcupante();
+				int deslocamento = Math.abs(posicaoDestino - posicaoAtual);
+				if((deslocamento <= 4) || (deslocamento == 15) || (deslocamento == 30) || (deslocamento == 45) || (deslocamento == 60)) {
+					
 				System.out.println("verificou que o deslocamento eh possivel");
 				//if(jogador2.getMuro().getPontosVida()!=0){
 				//System.out.println("viu que o muro ta vivo");
@@ -273,48 +277,7 @@ public class Partida {
 						//posicaoDestino == 130 ||
 						//posicaoDestino == 145 ||
 						//posicaoDestino == 160)){		/*&& (jogador1.isAtaque()== false)*/
-						//System.out.println("viu se a defesa nï¿½o quer atacar o muro");
-						//this.ator.getTela().notificaErroAndarMuro();
-					if(jogador1.isAtaque()){
-					System.out.println("eh ataque");
-					if(
-							((posicaoDestino > 10) && (posicaoAtual > 10))
-						 ||((posicaoDestino > 25 && posicaoDestino <= 29) && (posicaoAtual > 14 && posicaoAtual < 25))
-						 ||((posicaoDestino > 40 && posicaoDestino <= 44) && (posicaoAtual > 29 && posicaoAtual < 40))
-						 ||((posicaoDestino > 55 && posicaoDestino <= 59) && (posicaoAtual > 44 && posicaoAtual < 55))
-						 ||((posicaoDestino > 70 && posicaoDestino <= 74) && (posicaoAtual > 59 && posicaoAtual < 70))
-						 ||((posicaoDestino > 85 && posicaoDestino < 89)  && (posicaoAtual > 74 && posicaoAtual < 85))
-						 ||((posicaoDestino > 100 && posicaoDestino <= 104) && (posicaoAtual > 89 && posicaoAtual < 90))
-						 ||((posicaoDestino > 115 && posicaoDestino <= 119)  && (posicaoAtual > 104 && posicaoAtual < 115))
-						 ||((posicaoDestino > 130 && posicaoDestino <= 134) && (posicaoAtual > 119 && posicaoAtual < 130))
-						 ||((posicaoDestino > 145 && posicaoDestino <= 149)  && (posicaoAtual > 134 && posicaoAtual < 145))
-						 ||((posicaoDestino > 160 && posicaoDestino <= 164) && (posicaoAtual > 149 && posicaoAtual < 160))
-							) {
-					
-						this.ator.notificaErroPassarMuro();
-					
-					}else{
-						
-						System.out.println("deve anda");
-						tabuleiro.andar(posicaoAtual, posicaoDestino);
-					}
-				}else{
-					
-					if((
-							((posicaoAtual > 10 && posicaoAtual <= 14)&& (posicaoDestino > 10))
-							|| ((posicaoAtual > 25 && posicaoAtual <= 29)&&(posicaoDestino > 14 && posicaoDestino < 25))
-							|| ((posicaoAtual > 40 && posicaoAtual <= 44)&& (posicaoDestino > 29 && posicaoDestino < 40))
-							|| ((posicaoAtual > 56 && posicaoAtual <= 59)&& (posicaoDestino > 44 && posicaoDestino < 55))
-							|| ((posicaoAtual > 71 && posicaoAtual <= 74)&& (posicaoDestino > 59 && posicaoDestino < 70))
-							|| ((posicaoAtual > 86 && posicaoAtual < 89) && (posicaoDestino > 74 && posicaoDestino < 85))
-							|| ((posicaoAtual > 101 && posicaoAtual <= 104) && (posicaoDestino > 89 && posicaoDestino < 90))
-							|| ((posicaoAtual > 116 && posicaoAtual <= 119) && (posicaoDestino > 104 && posicaoDestino < 115))
-							|| ((posicaoAtual > 131 && posicaoAtual <= 134) && (posicaoDestino > 119 && posicaoDestino < 130))
-							|| ((posicaoAtual > 146 && posicaoAtual <= 149) && (posicaoDestino > 134 && posicaoDestino < 145))
-							|| ((posicaoAtual > 161 && posicaoAtual <= 164) && (posicaoDestino > 149 && posicaoDestino < 160))
-							)  
-							){
-						//System.out.println("viu se a defesa nï¿½o quer atacar o muro");
+						//System.out.println("viu se a defesa não quer atacar o muro");
 						//this.ator.getTela().notificaErroAndarMuro();
 			if(jogador1.isAtaque()){
 				System.out.println("eh ataque");
@@ -330,15 +293,10 @@ public class Partida {
 			}else{
 					
 					if(this.verificaDefesaQuerUltrapassaMuro(posicaoAtual, posicaoDestino)){
+						
 						this.ator.getTela().notificaErroPassarMuro();
 						
-						}else{
-							tabuleiro.andar(posicaoAtual, posicaoDestino);
-						}
-					
-				}
-			
-		} else{
+					}else{
 						tabuleiro.andar(posicaoAtual, posicaoDestino);
 					}
 					
@@ -348,4 +306,6 @@ public class Partida {
 			tela.notificaPoucoAlcance();
 		}
 	
- }}
+ }
+}
+	

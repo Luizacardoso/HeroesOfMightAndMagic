@@ -17,6 +17,7 @@ public class AtorNetGames implements OuvidorProxy{
 	private AtorJogador atorJogador;
 	private Proxy proxy;
 	private boolean conectado;
+	//private Partida partida;
 	
 	public AtorNetGames(AtorJogador atorJogador) {
 		super();
@@ -26,6 +27,7 @@ public class AtorNetGames implements OuvidorProxy{
 	}
 	
 	public boolean conectar(String servidor, String nome) {
+		atorJogador.getPartida().criarJogadores(servidor,nome);
 		try {
 			proxy.conectar(servidor, nome);
 		} catch (JahConectadoException e) {
